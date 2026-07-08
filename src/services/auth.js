@@ -1,0 +1,7 @@
+login()
+
+logout()
+
+getToken()
+
+isAuthenticated()
