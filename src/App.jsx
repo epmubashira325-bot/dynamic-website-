@@ -14,6 +14,12 @@ import ProjectsPage from "./pages/ProjectsPage";
 import ContactPage from "./pages/ContactPage";
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
+import Construction from "./pages/Construction";
+import StructuralDesign from "./pages/StructuralDesign";
+import Renovation from "./pages/Renovation";
+import Supervision from "./pages/Supervision";
+import SiteConsulting from "./pages/SiteConsulting";
+import InteriorDesign from "./pages/InteriorDesign";
 function App() {
   return (
     <Routes>
@@ -25,6 +31,12 @@ function App() {
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/terms" element={<TermsPage />} />
 <Route path="/privacy" element={<PrivacyPage />} />
+<Route path="/services/structural-design" element={<StructuralDesign />} />
+<Route path="/services/construction" element={<Construction />} />
+<Route path="/services/renovation" element={<Renovation />} />
+<Route path="/services/supervision" element={<Supervision />} />
+<Route path="/services/site-consulting" element={<SiteConsulting />} />
+<Route path="/services/interior-design" element={<InteriorDesign />} />
 
 
       {/* Login */}

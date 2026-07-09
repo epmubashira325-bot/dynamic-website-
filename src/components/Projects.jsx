@@ -60,7 +60,7 @@ function Projects() {
 
           <Link
             to="/projects"
-            className="bg-amber-700 hover:bg-amber-800 text-white px-10 py-4 tracking-widest uppercase"
+            className="inline-block bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full transition"
           >
             More Projects
           </Link>

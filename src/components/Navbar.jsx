@@ -45,10 +45,10 @@ function Navbar() {
         <ul className="hidden lg:flex items-center gap-10 font-medium text-[16px]">
 
           <li>
-            <NavLink to="/" className={linkClass}>
-              Home
-            </NavLink>
-          </li>
+  <NavLink to="/" className={linkClass}>
+    Home
+  </NavLink>
+</li>
 
           <li>
             <NavLink to="/about" className={linkClass}>
@@ -78,7 +78,7 @@ function Navbar() {
 
         {/* Button */}
         <button className="hidden lg:block bg-amber-600 hover:bg-amber-700 transition duration-300 text-white px-8 py-3 rounded-full font-semibold shadow-lg">
-          Get Quote
+          Call Us
         </button>
 
       </div>

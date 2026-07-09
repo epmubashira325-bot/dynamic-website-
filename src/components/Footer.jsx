@@ -48,9 +48,8 @@ function Footer() {
 
               <a
                 href={`tel:${footer.phone}`}
-                className="flex items-start gap-4 hover:text-amber-500 transition"
-              >
-                <FaPhoneAlt className="mt-1 text-amber-500" />
+className="flex items-start gap-4 hover:text-[#8B5E3C] transition"              >
+  <FaPhoneAlt className="mt-1 text-[#8B5E3C]" />
                 <span>{footer.phone}</span>
               </a>
 

@@ -26,7 +26,7 @@ function About() {
 
           {/* Experience Card */}
 
-          <div className="absolute -bottom-8 -right-8 bg-amber-600 text-white p-8 rounded-xl shadow-xl">
+          <div className="absolute -bottom-8 -right-8 bg-[#8B5E3C] text-white p-8 rounded-xl shadow-xl">
 
             <h2 className="text-5xl font-bold">
               5+
@@ -49,7 +49,7 @@ function About() {
           viewport={{ once: true }}
         >
 
-          <p className="uppercase tracking-[5px] text-amber-500 font-semibold">
+          <p className="uppercase tracking-[5px] text-[#8B5E3C] font-semibold">
             About Us
           </p>
 
@@ -74,32 +74,28 @@ function About() {
 
             <div className="flex items-center gap-4">
 
-              <FaCheckCircle className="text-amber-600 text-xl"/>
-
+<FaCheckCircle className="text-[#8B5E3C] text-xl" />
               Premium Quality Materials
 
             </div>
 
             <div className="flex items-center gap-4">
 
-              <FaCheckCircle className="text-amber-600 text-xl"/>
-
+<FaCheckCircle className="text-[#8B5E3C] text-xl" />
               Expert Interior Designers
 
             </div>
 
             <div className="flex items-center gap-4">
 
-              <FaCheckCircle className="text-amber-600 text-xl"/>
-
+<FaCheckCircle className="text-[#8B5E3C] text-xl" />
               Modern Architecture Solutions
 
             </div>
 
           </div>
             <Link to="/about">
-  <button className="mt-10 bg-amber-600 hover:bg-amber-700 transition px-8 py-4 rounded-full text-white font-semibold">
-    Learn More
+<button className="mt-10 bg-[#8B5E3C] hover:bg-[#6F4E37] transition px-8 py-4 rounded-full text-white font-semibold">    Learn More
   </button>
 </Link>
          

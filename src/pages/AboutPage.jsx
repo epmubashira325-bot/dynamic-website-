@@ -4,6 +4,7 @@ import MeetProfessional from "../components/MeetProfessional";
 import CompanyStory from "../components/CompanyStory";
 import MissionVision from "../components/MissionVision";
 import ContactCTA from "../components/ContactCTA";
+import Footer from "../components/Footer";
 
 function AboutPage() {
   return (
@@ -14,7 +15,9 @@ function AboutPage() {
       <CompanyStory />
       <MissionVision />
       <ContactCTA />
+      <Footer />
     </>
+
   );
 }
 
