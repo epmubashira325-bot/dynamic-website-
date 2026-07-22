@@ -1,114 +1,119 @@
-import about from "../assets/images/about.jpg";
-import { FaCheckCircle } from "react-icons/fa";
+import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { aboutVideo, aboutCounters } from "../data/videoData";
+import "./About.css";
+
+function AnimatedCounter({ target, suffix, isVisible }) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!isVisible) return;
+    let start = 0;
+    const duration = 2000;
+    const inc = target / (duration / 16);
+    let raf;
+    const animate = () => {
+      start += inc;
+      if (start >= target) { setCount(target); return; }
+      setCount(Math.floor(start));
+      raf = requestAnimationFrame(animate);
+    };
+    raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
+  }, [isVisible, target]);
+  return <>{count}{suffix}</>;
+}
+
 function About() {
+  const videoRef = useRef(null);
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          videoRef.current?.play().catch(() => {});
+        } else {
+          videoRef.current?.pause();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-24 bg-white">
-
-      <div className="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
-
-        {/* Left Image */}
-
+    <section id="about" className="about" ref={sectionRef}>
+      <div className="luxury-container about__grid">
+        {/* Video */}
         <motion.div
-          initial={{ opacity: 0, x: -80 }}
+          className="about__video-side"
+          initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: .8 }}
-          viewport={{ once: true }}
-          className="relative"
+          transition={{ duration: 0.9 }}
+          viewport={{ once: true, margin: "-80px" }}
         >
-
-          <img
-            src={about}
-            alt="About"
-            className="rounded-2xl shadow-2xl"
-          />
-
-          {/* Experience Card */}
-
-          <div className="absolute -bottom-8 -right-8 bg-[#8B5E3C] text-white p-8 rounded-xl shadow-xl">
-
-            <h2 className="text-5xl font-bold">
-              5+
-            </h2>
-
-            <p className="mt-2">
-              Years Experience
-            </p>
-
+          <div className="about__video-box">
+            <video
+              ref={videoRef}
+              className="about__video"
+              src={aboutVideo}
+              muted loop playsInline preload="none"
+            />
+            <div className="about__video-overlay" />
           </div>
-
         </motion.div>
 
-        {/* Right Content */}
-
+        {/* Content */}
         <motion.div
-          initial={{ opacity: 0, x: 80 }}
+          className="about__content"
+          initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: .8 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.9 }}
+          viewport={{ once: true, margin: "-80px" }}
         >
-
-          <p className="uppercase tracking-[5px] text-[#8B5E3C] font-semibold">
-            About Us
+          <p className="luxury-subheading">About Us</p>
+          <h2 className="luxury-heading">Crafting Spaces<br/>That Inspire</h2>
+          <div className="section-divider" />
+          <p className="about__text">
+            With decades of expertise, AM Associates transforms ideas into
+            timeless architectural landmarks through innovation, precision,
+            and quality.
           </p>
 
-          <h2 className="text-5xl font-bold mt-5 leading-tight text-gray-900">
-
-            Creating Luxury
-            <br />
-            Interior Designs
-
-          </h2>
-
-          <p className="mt-8 text-gray-600 leading-8">
-
-            At AM Associates, we specialize in creating
-            elegant residential and commercial interiors
-            with innovative architecture, premium
-            craftsmanship, and timeless aesthetics.
-
-          </p>
-
-          <div className="space-y-5 mt-10">
-
-            <div className="flex items-center gap-4">
-
-<FaCheckCircle className="text-[#8B5E3C] text-xl" />
-              Premium Quality Materials
-
-            </div>
-
-            <div className="flex items-center gap-4">
-
-<FaCheckCircle className="text-[#8B5E3C] text-xl" />
-              Expert Interior Designers
-
-            </div>
-
-            <div className="flex items-center gap-4">
-
-<FaCheckCircle className="text-[#8B5E3C] text-xl" />
-              Modern Architecture Solutions
-
-            </div>
-
+          {/* Counters */}
+          <div className="about__counters">
+            {aboutCounters.map((c, i) => (
+              <motion.div
+                key={i}
+                className="about__counter-item"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <span className="about__counter-num">
+                  <AnimatedCounter target={c.number} suffix={c.suffix} isVisible={isVisible} />
+                </span>
+                <span className="about__counter-label">{c.label}</span>
+              </motion.div>
+            ))}
           </div>
-            <Link to="/about">
-<button className="mt-10 bg-[#8B5E3C] hover:bg-[#6F4E37] transition px-8 py-4 rounded-full text-white font-semibold">    Learn More
-  </button>
-</Link>
-         
 
-          
-
+          <Link to="/about">
+            <button className="luxury-btn" id="about-btn">
+              <span>Learn More</span>
+            </button>
+          </Link>
         </motion.div>
-
       </div>
-
     </section>
   );
-  <section id="about" className="py-24 bg-white"></section>
 }
 
 export default About;

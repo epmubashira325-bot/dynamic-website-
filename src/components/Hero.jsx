@@ -1,137 +1,184 @@
-import { motion } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+// src/components/Hero.jsx
+import { useState, useEffect, useRef } from 'react';
+import { FaPlay, FaPause, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import useCarousel from '../hooks/useCarousel';
+import './Hero.css';
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
+const Hero = () => {
+  const { slides, loading, error } = useCarousel();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef(null);
 
-import hero1 from "../assets/images/hero1.jpg";
-import hero2 from "../assets/images/hero2.jpg";
-import hero3 from "../assets/images/hero3.jpg";
-import hero4 from "../assets/images/hero4.jpg";
-import hero5 from "../assets/images/hero5.jpg";
+  // Auto-play functionality
+  useEffect(() => {
+    if (isPlaying && slides.length > 0) {
+      intervalRef.current = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) {
+            goToNext();
+            return 0;
+          }
+          return prev + 0.5;
+        });
+      }, 50);
+    } else {
+      clearInterval(intervalRef.current);
+    }
 
-const slides = [
-  {
-    image: hero1,
-    title: "Luxury Interior Design",
-    subtitle:
-      "Creating timeless spaces that combine elegance, comfort and functionality.",
-  },
-  {
-    image: hero2,
-    title: "Modern Living Spaces",
-    subtitle:
-      "Premium interiors crafted to match your lifestyle and vision.",
-  },
-  {
-    image: hero3,
-    title: "Architecture & Design",
-    subtitle:
-      "Designing beautiful homes and commercial spaces with passion.",
-  },
-  {
-    image: hero4,
-    title: "Elegant Home Interiors",
-    subtitle:
-      "Luxury finishes that transform every room into an experience.",
-  },
-  {
-    image: hero5,
-    title: "Commercial Interiors",
-    subtitle:
-      "Innovative workspaces designed for productivity and elegance.",
-  },
-];
+    return () => clearInterval(intervalRef.current);
+  }, [isPlaying, slides.length]);
 
-function Hero() {
-  return (
-    <section className="h-screen">
+  // Reset progress when slide changes
+  useEffect(() => {
+    setProgress(0);
+  }, [currentIndex]);
 
-      <Swiper
-        modules={[Autoplay, Pagination, EffectFade]}
-        effect="fade"
-        loop={true}
-        speed={1200}
-        autoplay={{
-          delay: 4500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        className="h-full"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className="relative h-screen bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${slide.image})`,
-              }}
-            >
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25"></div>
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
+  };
 
-              {/* Hero Content */}
-              <div className="relative z-10 flex items-center h-full">
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  };
 
-                <div className="max-w-7xl mx-auto px-8 w-full">
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+    setProgress(0);
+  };
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 80 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    className="max-w-2xl"
-                  >
-                    <p className="uppercase tracking-[8px] text-amber-400 font-semibold text-sm mb-6">
-                      Interior Design Studio
-                    </p>
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
 
-                    <h1 className="text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                      {slide.title}
-                    </h1>
+  // Loading State
+  if (loading) {
+    return (
+      <section className="hero">
+        <div className="hero-loading">
+          <div className="hero-loading-spinner"></div>
+          <p>Loading carousel...</p>
+        </div>
+      </section>
+    );
+  }
 
-                    <p className="mt-8 text-gray-200 text-lg leading-8">
-                      {slide.subtitle}
-                    </p>
+  // Error State
+  if (error) {
+    return (
+      <section className="hero">
+        <div className="hero-error">
+          <p>⚠️ Failed to load carousel</p>
+          <button onClick={() => window.location.reload()}>Retry</button>
+        </div>
+      </section>
+    );
+  }
 
-                    <div className="mt-10 flex flex-wrap gap-5">
-
-                      <button className="bg-amber-600 hover:bg-amber-700 transition-all duration-300 px-8 py-4 rounded-full text-white font-semibold shadow-lg">
-                        Explore Projects
-                      </button>
-
-                      <button className="border-2 border-white hover:bg-white hover:text-black transition-all duration-300 px-8 py-4 rounded-full text-white font-semibold">
-                        Get Free Quote
-                      </button>
-
-                    </div>
-                  </motion.div>
-
-                </div>
-
-              </div>
-
-              {/* Scroll Indicator */}
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-
-                <div className="w-7 h-12 border-2 border-white rounded-full flex justify-center">
-
-                  <div className="w-1 h-3 bg-white rounded-full mt-2"></div>
-
-                </div>
-
-              </div>
-
+  // Empty State - Show placeholder
+  if (!slides || slides.length === 0) {
+    return (
+      <section className="hero">
+        <div className="hero-slide">
+          <div className="hero-placeholder">
+            <div className="hero-placeholder-content">
+              <h1>Welcome to AM Associates</h1>
+              <p>Building Dreams, Creating Excellence</p>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
+  const currentSlide = slides[currentIndex];
+
+  return (
+    <section className="hero">
+      <div className="hero-slide">
+        {/* Media */}
+        {currentSlide.media_type === 'video' && currentSlide.video ? (
+          <video
+            src={currentSlide.video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="hero-media"
+            key={currentSlide.id}
+          />
+        ) : currentSlide.image ? (
+          <img
+            src={currentSlide.image}
+            alt={currentSlide.title || 'Carousel slide'}
+            className="hero-media"
+            key={currentSlide.id}
+          />
+        ) : (
+          <div className="hero-placeholder" key={currentSlide.id}>
+            <div className="hero-placeholder-content">
+              <h1>{currentSlide.title || 'Welcome to AM Associates'}</h1>
+              <p>Building Dreams, Creating Excellence</p>
+            </div>
+          </div>
+        )}
+
+        {/* Overlay with title */}
+        <div className="hero-overlay">
+          <div className="hero-content">
+            <h1 className="hero-title">{currentSlide.title || 'AM Associates'}</h1>
+            <p className="hero-subtitle">Building Dreams, Creating Excellence</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Controls - Only show if there are multiple slides */}
+      {slides.length > 1 && (
+        <>
+          <div className="hero-controls">
+            <button
+              onClick={goToPrevious}
+              className="hero-control-btn"
+              aria-label="Previous slide"
+            >
+              <FaChevronLeft />
+            </button>
+
+
+
+            <button
+              onClick={goToNext}
+              className="hero-control-btn"
+              aria-label="Next slide"
+            >
+              <FaChevronRight />
+            </button>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="hero-progress-bar">
+            <div
+              className="hero-progress-fill"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+
+          {/* Dots Navigation */}
+          <div className="hero-dots">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`hero-dot ${index === currentIndex ? 'active' : ''}`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
-}
+};
 
 export default Hero;

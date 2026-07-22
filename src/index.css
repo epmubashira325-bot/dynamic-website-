@@ -1,9 +1,398 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #8B5E3C;
-  --color-primary-dark: #6F4E37;
+  /* Primary Palette */
+  --color-gold: #C9A96E;
+  --color-gold-light: #E8D5A8;
+  --color-gold-dark: #A88B4A;
+  --color-primary: #C9A96E;
+  --color-primary-dark: #A88B4A;
+
+  /* Neutrals */
+  --color-charcoal: #1a1a1a;
+  --color-charcoal-dark: #0a0a0a;
+  --color-charcoal-light: #2a2a2a;
+
+  /* Fonts */
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
+
+/* ========================================
+   CSS Custom Properties (Design Tokens)
+   ======================================== */
+:root {
+  /* Color Palette */
+  --color-bg: #0a0a0a;
+  --color-bg-alt: #111111;
+  --color-bg-elevated: #1a1a1a;
+  --color-text: #f5f5f5;
+  --color-text-muted: #9a9a9a;
+  --color-text-subtle: #666666;
+  --color-gold: #C9A96E;
+  --color-gold-hover: #E8D5A8;
+  --color-gold-dark: #A88B4A;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-gold: rgba(201, 169, 110, 0.3);
+
+  /* Typography */
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast: all 0.2s ease;
+  --transition-slow: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Spacing */
+  --section-padding: clamp(5rem, 10vw, 8rem);
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 20px;
+}
+
+/* ========================================
+   Base Reset & Global Styles
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-smooth);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* Selection Color */
+::selection {
+  background-color: rgba(201, 169, 110, 0.3);
+  color: var(--color-white);
+}
+
+/* ========================================
+   Custom Scrollbar
+   ======================================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dark);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* ========================================
+   Global Layout Utilities
+   ======================================== */
+.luxury-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .luxury-container {
+    padding: 0 1.25rem;
+  }
+}
+
+/* ========================================
+   Typography Utilities
+   ======================================== */
+.luxury-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 5.5vw, 4.5rem);
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.luxury-subheading {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+/* ========================================
+   Button Styles
+   ======================================== */
+.luxury-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-gold-hover), var(--color-gold));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.luxury-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201, 169, 110, 0.35);
+}
+
+.luxury-btn:hover::before {
+  opacity: 1;
+}
+
+.luxury-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.luxury-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(10px);
+}
+
+.luxury-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.luxury-btn-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.1rem 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.luxury-btn-glass:hover {
+  background: rgba(201, 169, 110, 0.2);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(201, 169, 110, 0.2);
+}
+
+.luxury-btn svg, .luxury-btn-outline svg, .luxury-btn-glass svg {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  z-index: 1;
+}
+
+.luxury-btn:hover svg, .luxury-btn-outline:hover svg, .luxury-btn-glass:hover svg {
+  transform: translateX(4px);
+}
+
+/* ========================================
+   Glassmorphism Card
+   ======================================== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(201, 169, 110, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(201, 169, 110, 0.1);
+}
+
+.glow-border-hover {
+  transition: var(--transition-smooth);
+}
+
+.glow-border-hover:hover {
+  border-color: rgba(201, 169, 110, 0.5);
+  box-shadow: 0 0 25px rgba(201, 169, 110, 0.15) inset, 0 0 15px rgba(201, 169, 110, 0.15);
+}
+
+/* ========================================
+   Section Divider
+   ======================================== */
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+  margin: 1.5rem 0;
+}
+
+/* ========================================
+   Global Animation Keyframes
+   ======================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.4); }
+  50% { box-shadow: 0 0 0 15px rgba(201, 169, 110, 0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========================================
+   Responsive Helpers
+   ======================================== */
+@media (max-width: 768px) {
+  .luxury-heading {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+  .luxury-btn,
+  .luxury-btn-outline {
+    padding: 0.85rem 2rem;
+    font-size: 0.8rem;
+  }
 }

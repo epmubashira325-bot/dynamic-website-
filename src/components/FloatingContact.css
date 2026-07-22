@@ -1,0 +1,134 @@
+/* ================================================================
+   FLOATING ACTION BUTTONS  —  always visible, bottom-right corner
+   ================================================================ */
+
+/* ── Wrapper stack ── */
+.fab-stack {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.75rem;
+  z-index: 99999;
+  /* above everything: modals, videos, overlays */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  /* spacing between the two buttons */
+  pointer-events: none;
+  /* let children capture events individually */
+}
+
+/* ── Shared button base ── */
+.fab {
+  pointer-events: auto;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  /* always on top of page content */
+  position: relative;
+  z-index: 99999;
+  /* smooth hover transition */
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
+  /* remove any inherited visibility issues */
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* ── WhatsApp — official green ── */
+.fab--whatsapp {
+  background: #25D366;
+  box-shadow:
+    0 4px 16px rgba(37, 211, 102, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.fab--whatsapp:hover {
+  transform: scale(1.13);
+  box-shadow:
+    0 8px 28px rgba(37, 211, 102, 0.7),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.08);
+}
+
+/* ── WhatsApp pulse ring ── */
+.fab--whatsapp::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.55);
+  animation: fab-pulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes fab-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  70% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+/* ── Call / Contact — gold brand colour ── */
+.fab--call {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  box-shadow:
+    0 4px 16px rgba(37, 211, 102, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.fab--call:hover {
+  transform: scale(1.13);
+  box-shadow:
+    0 8px 28px rgba(37, 211, 102, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.08);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .fab-stack {
+    bottom: 1.5rem;
+    right: 1.25rem;
+    gap: 12px;
+  }
+
+  .fab {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fab-stack {
+    bottom: 1.1rem;
+    right: 1rem;
+    gap: 10px;
+  }
+
+  .fab {
+    width: 44px;
+    height: 44px;
+    font-size: 1.15rem;
+  }
+}

@@ -1,0 +1,868 @@
+/* ========================================
+   FONT IMPORTS
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100;200;300;400;500;600;700&display=swap');
+
+/* ========================================
+   CSS VARIABLES
+   ======================================== */
+:root {
+  /* Gold Colors */
+  --color-gold: #C9A96E;
+  --color-gold-light: #E8D5A8;
+  --color-gold-dark: #A88B4A;
+  --color-primary: #C9A96E;
+  --color-primary-dark: #A88B4A;
+
+  /* Neutrals */
+  --color-charcoal: #1a1a1a;
+  --color-charcoal-dark: #0a0a0a;
+  --color-charcoal-light: #2a2a2a;
+
+  /* White with opacity variations */
+  --color-white: #ffffff;
+  --color-white-95: rgba(255, 255, 255, 0.95);
+  --color-white-90: rgba(255, 255, 255, 0.9);
+  --color-white-85: rgba(255, 255, 255, 0.85);
+  --color-white-80: rgba(255, 255, 255, 0.8);
+  --color-white-75: rgba(255, 255, 255, 0.75);
+  --color-white-70: rgba(255, 255, 255, 0.7);
+  --color-white-60: rgba(255, 255, 255, 0.6);
+  --color-white-50: rgba(255, 255, 255, 0.5);
+  --color-white-40: rgba(255, 255, 255, 0.4);
+  --color-white-30: rgba(255, 255, 255, 0.3);
+  --color-white-20: rgba(255, 255, 255, 0.2);
+  --color-white-10: rgba(255, 255, 255, 0.1);
+  --color-white-05: rgba(255, 255, 255, 0.05);
+
+  /* Gold with opacity variations */
+  --color-gold-95: rgba(201, 169, 110, 0.95);
+  --color-gold-90: rgba(201, 169, 110, 0.9);
+  --color-gold-80: rgba(201, 169, 110, 0.8);
+  --color-gold-70: rgba(201, 169, 110, 0.7);
+  --color-gold-60: rgba(201, 169, 110, 0.6);
+  --color-gold-50: rgba(201, 169, 110, 0.5);
+  --color-gold-40: rgba(201, 169, 110, 0.4);
+  --color-gold-30: rgba(201, 169, 110, 0.3);
+  --color-gold-20: rgba(201, 169, 110, 0.2);
+  --color-gold-15: rgba(201, 169, 110, 0.15);
+  --color-gold-10: rgba(201, 169, 110, 0.1);
+  --color-gold-05: rgba(201, 169, 110, 0.05);
+
+  /* Shadows */
+  --shadow-gold: 0 10px 30px rgba(201, 169, 110, 0.3);
+  --shadow-gold-soft: 0 4px 20px rgba(201, 169, 110, 0.2);
+  --shadow-gold-glow: 0 0 60px rgba(201, 169, 110, 0.15);
+  --shadow-charcoal: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   PREMIUM VIDEO SECTION
+   ======================================== */
+.premium-video-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-charcoal-dark);
+}
+
+/* Video Background */
+.premium-video-section__video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Hide ALL browser video controls */
+.premium-video-section__video-bg::-webkit-media-controls {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-webkit-media-controls-timeline {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-webkit-media-controls-current-time-display {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-webkit-media-controls-time-remaining-display {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-webkit-media-controls-volume-slider {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-webkit-media-controls-mute-button {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-webkit-media-controls-fullscreen-button {
+  display: none !important;
+}
+
+/* Hide video controls for Firefox */
+.premium-video-section__video-bg::-moz-media-controls {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-moz-media-controls-panel {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::-moz-media-controls-play-button {
+  display: none !important;
+}
+
+/* Image Background */
+.premium-video-section__image-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  animation: scaleIn 1.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(1.1);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Vimeo Wrapper */
+.premium-video-section__vimeo-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.premium-video-section__vimeo-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 56.25vw;
+  min-height: 100vh;
+  min-width: 177.77vh;
+  pointer-events: none;
+}
+
+/* Hide Vimeo controls */
+.premium-video-section__vimeo-wrapper iframe {
+  pointer-events: none;
+}
+
+/* ========================================
+   OVERLAY - Premium Charcoal & Gold Gradient
+   ======================================== */
+.premium-video-section__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg,
+      rgba(10, 10, 10, 0.9) 0%,
+      rgba(26, 26, 26, 0.75) 40%,
+      rgba(201, 169, 110, 0.08) 100%);
+  z-index: 1;
+}
+
+/* ========================================
+   CONTENT - White & Gold Luxury Blend
+   ======================================== */
+.premium-video-section__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 2rem;
+}
+
+/* ========================================
+   HEADING - Gold (Thinner)
+   ======================================== */
+.premium-video-section__heading {
+  font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+  font-size: 4.5rem;
+  font-weight: 400;
+  /* Reduced from 700 */
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  letter-spacing: 3px;
+  color: var(--color-gold);
+  text-shadow: 0 2px 30px rgba(201, 169, 110, 0.15);
+}
+
+/* ========================================
+   SUBTITLE - Gold Light (Thinner)
+   ======================================== */
+.premium-video-section__subtitle {
+  font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  /* Reduced from 500 */
+  font-style: italic;
+  letter-spacing: 8px;
+  margin-bottom: 0.75rem;
+  color: var(--color-gold-light);
+  text-shadow: 0 1px 20px rgba(201, 169, 110, 0.1);
+}
+
+/* ========================================
+   MAIN TAGLINE - White with Gold (Thinner)
+   ======================================== */
+.premium-video-section__tagline {
+  font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+  font-size: 3.5rem;
+  font-weight: 400;
+  /* Reduced from 600 */
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  color: var(--color-white);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.4);
+}
+
+.premium-video-section__tagline .gold-text {
+  color: var(--color-gold);
+  position: relative;
+}
+
+.premium-video-section__tagline .gold-text::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  /* Reduced from 2px */
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  opacity: 0.4;
+}
+
+/* ========================================
+   DESCRIPTION - White (Thinner)
+   ======================================== */
+.premium-video-section__desc {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 200;
+  /* Reduced from 300 */
+  margin-bottom: 2.5rem;
+  color: var(--color-white-85);
+  line-height: 1.8;
+  text-shadow: 0 1px 15px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.5px;
+}
+
+.premium-video-section__desc .gold-highlight {
+  color: var(--color-gold-light);
+  font-weight: 300;
+  /* Reduced from 400 */
+}
+
+/* ========================================
+   VIEW MORE BUTTON - Thinner Text
+   ======================================== */
+.premium-video-section .view-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 45px;
+  background: transparent;
+  color: var(--color-white);
+  border: 1.5px solid var(--color-gold-40);
+  /* Thinner border */
+  border-radius: 50px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  /* Reduced from 500 */
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  background: var(--color-gold-05);
+}
+
+.premium-video-section .view-more-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--color-gold-15), transparent);
+  transition: left 0.5s ease;
+  z-index: 0;
+}
+
+.premium-video-section .view-more-btn:hover::before {
+  left: 100%;
+}
+
+.premium-video-section .view-more-btn:hover {
+  background: var(--color-gold-15);
+  border-color: var(--color-gold);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-gold);
+  color: var(--color-white);
+}
+
+.premium-video-section .view-more-btn:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-gold-soft);
+}
+
+.premium-video-section .view-more-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.premium-video-section .view-more-btn .btn-arrow {
+  width: 18px;
+  /* Reduced from 20px */
+  height: 18px;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+  stroke: var(--color-gold);
+  stroke-width: 1.5;
+  /* Thinner stroke */
+}
+
+.premium-video-section .view-more-btn:hover .btn-arrow {
+  transform: translateX(5px);
+}
+
+/* ========================================
+   PRIMARY CTA BUTTON - Gold Filled
+   ======================================== */
+.premium-video-section .view-more-btn.primary-btn {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-charcoal-dark);
+  font-weight: 300;
+  /* Thinner */
+}
+
+.premium-video-section .view-more-btn.primary-btn:hover {
+  background: var(--color-gold-light);
+  border-color: var(--color-gold-light);
+  color: var(--color-charcoal-dark);
+  box-shadow: var(--shadow-gold);
+}
+
+.premium-video-section .view-more-btn.primary-btn .btn-arrow {
+  stroke: var(--color-charcoal-dark);
+  stroke-width: 1.5;
+}
+
+.premium-video-section .view-more-btn.primary-btn:hover .btn-arrow {
+  stroke: var(--color-charcoal-dark);
+}
+
+/* ========================================
+   SECONDARY CTA BUTTON - Outlined
+   ======================================== */
+.premium-video-section .view-more-btn.secondary-btn {
+  background: transparent;
+  border-color: var(--color-white-30);
+  color: var(--color-white);
+  font-weight: 300;
+}
+
+.premium-video-section .view-more-btn.secondary-btn:hover {
+  background: var(--color-white-10);
+  border-color: var(--color-white-60);
+  color: var(--color-white);
+  box-shadow: var(--shadow-charcoal);
+}
+
+.premium-video-section .view-more-btn.secondary-btn .btn-arrow {
+  stroke: var(--color-white);
+  stroke-width: 1.5;
+}
+
+/* ========================================
+   LUXURY BUTTON - Gold Outlined
+   ======================================== */
+.luxury-btn {
+  display: inline-block;
+  padding: 16px 45px;
+  background: transparent;
+  color: var(--color-gold);
+  border: 1.5px solid var(--color-gold);
+  /* Thinner border */
+  border-radius: 50px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  /* Reduced from 500 */
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-charcoal-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.luxury-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Button Container */
+.premium-video-section__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+/* ========================================
+   CTA WRAPPER
+   ======================================== */
+.premium-video-section__cta {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+/* ========================================
+   LOADING, ERROR, EMPTY STATES
+   ======================================== */
+.premium-video-section--loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-charcoal-dark);
+}
+
+.premium-video-section__loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-gold);
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-weight: 300;
+}
+
+.loader-spinner {
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--color-gold-20);
+  /* Thinner border */
+  border-top-color: var(--color-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error State */
+.premium-video-section--error {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-charcoal-dark);
+}
+
+.premium-video-section__error {
+  text-align: center;
+  color: var(--color-white);
+  max-width: 500px;
+  padding: 2rem;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-weight: 300;
+}
+
+.error-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  color: var(--color-gold);
+}
+
+.premium-video-section__error p {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.premium-video-section__error .error-details {
+  font-size: 0.875rem;
+  opacity: 0.7;
+  color: var(--color-white-60);
+  margin-bottom: 1.5rem;
+}
+
+/* Empty State */
+.premium-video-section--empty {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-charcoal-dark);
+}
+
+.premium-video-section__empty {
+  text-align: center;
+  color: var(--color-white-60);
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-weight: 300;
+}
+
+.premium-video-section__empty p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 1024px) {
+  .premium-video-section__heading {
+    font-size: 3.8rem;
+  }
+
+  .premium-video-section__tagline {
+    font-size: 3rem;
+  }
+
+  .premium-video-section__subtitle {
+    font-size: 1.5rem;
+  }
+
+  .premium-video-section .view-more-btn {
+    padding: 16px 38px;
+  }
+}
+
+@media (max-width: 768px) {
+  .premium-video-section__heading {
+    font-size: 3rem;
+  }
+
+  .premium-video-section__tagline {
+    font-size: 2.5rem;
+  }
+
+  .premium-video-section__subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+  }
+
+  .premium-video-section__desc {
+    font-size: 1rem;
+  }
+
+  .premium-video-section__content {
+    padding: 1.5rem;
+  }
+
+  .luxury-btn {
+    padding: 14px 35px;
+    font-size: 0.9rem;
+  }
+
+  .premium-video-section .view-more-btn {
+    padding: 14px 32px;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    gap: 10px;
+  }
+
+  .premium-video-section .view-more-btn .btn-arrow {
+    width: 16px;
+    height: 16px;
+  }
+
+  .premium-video-section__buttons {
+    gap: 0.8rem;
+  }
+
+  .premium-video-section__cta {
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .premium-video-section__heading {
+    font-size: 2.5rem;
+  }
+
+  .premium-video-section__tagline {
+    font-size: 2rem;
+  }
+
+  .premium-video-section__subtitle {
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+
+  .premium-video-section__desc {
+    font-size: 0.9rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .premium-video-section__cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .luxury-btn {
+    padding: 12px 30px;
+    font-size: 0.8rem;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .premium-video-section .view-more-btn {
+    padding: 12px 28px;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    gap: 8px;
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  .premium-video-section .view-more-btn .btn-arrow {
+    width: 14px;
+    height: 14px;
+  }
+
+  .premium-video-section__buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .premium-video-section__heading {
+    font-size: 2rem;
+  }
+
+  .premium-video-section__tagline {
+    font-size: 1.6rem;
+  }
+
+  .premium-video-section .view-more-btn {
+    padding: 10px 22px;
+    font-size: 0.7rem;
+  }
+}
+
+/* ========================================
+   ADDITIONAL SAFETY MEASURES
+   ======================================== */
+.premium-video-section {
+  cursor: default;
+}
+
+.premium-video-section::before,
+.premium-video-section::after {
+  display: none !important;
+}
+
+.premium-video-section__video-bg::before,
+.premium-video-section__video-bg::after {
+  display: none !important;
+}
+
+.premium-video-section__video-bg {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@media (hover: none) {
+  .premium-video-section__video-bg::-webkit-media-controls {
+    display: none !important;
+  }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-gold-30);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px var(--color-gold-05);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 var(--color-gold-05);
+  }
+}
+
+.premium-video-section .view-more-btn:focus-visible {
+  outline: 1.5px solid var(--color-gold);
+  /* Thinner outline */
+  outline-offset: 2px;
+}
+
+/* Gold accent for CTA button */
+.premium-video-section .view-more-btn.gold-btn {
+  border-color: var(--color-gold-40);
+  background: var(--color-gold-10);
+  color: var(--color-gold);
+  font-weight: 300;
+}
+
+.premium-video-section .view-more-btn.gold-btn:hover {
+  background: var(--color-gold-20);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-gold);
+  color: var(--color-gold-light);
+}
+
+.premium-video-section .view-more-btn.gold-btn .btn-arrow {
+  stroke: var(--color-gold);
+  stroke-width: 1.5;
+}
+
+/* Button loading state */
+.premium-video-section .view-more-btn.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.premium-video-section .view-more-btn.loading .btn-arrow {
+  animation: spin 1s linear infinite;
+}
+
+/* Overlay Variations */
+.premium-video-section__overlay--dark {
+  background: linear-gradient(135deg,
+      rgba(10, 10, 10, 0.95) 0%,
+      rgba(26, 26, 26, 0.85) 50%,
+      rgba(201, 169, 110, 0.05) 100%);
+}
+
+.premium-video-section__overlay--light {
+  background: linear-gradient(135deg,
+      rgba(10, 10, 10, 0.6) 0%,
+      rgba(26, 26, 26, 0.4) 50%,
+      rgba(201, 169, 110, 0.1) 100%);
+}
+
+.premium-video-section__overlay--gradient {
+  background: linear-gradient(135deg,
+      rgba(10, 10, 10, 0.9) 0%,
+      rgba(201, 169, 110, 0.15) 60%,
+      rgba(10, 10, 10, 0.7) 100%);
+}
+
+/* ========================================
+   SCROLL INDICATOR - Gold Accent
+   ======================================== */
+.premium-video-section__scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-white-50);
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 200;
+  /* Thinner */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: bounce 2s infinite;
+}
+
+.premium-video-section__scroll-indicator .scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-gold), transparent);
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}

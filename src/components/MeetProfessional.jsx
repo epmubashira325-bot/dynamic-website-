@@ -32,12 +32,12 @@ function MeetProfessional() {
 
             <img
               src={ceo}
-              alt="Amarnath M."
+              alt="Amarnath M"
               className="w-52 h-64 object-cover rounded-xl mx-auto shadow-lg"
             />
 
             <h3 className="mt-8 text-3xl font-bold">
-              Amarnath M.
+              Amarnath M
             </h3>
 
             <p className="text-amber-600 font-semibold mt-2">
@@ -74,7 +74,7 @@ function MeetProfessional() {
             </h3>
 
             <p className="text-gray-600 leading-9 text-lg">
-              Amarnath M. holds a Master's degree in Structural
+              Amarnath M holds a Master's degree in Structural
               Engineering and is a highly qualified Chartered
               Engineer with extensive expertise in structural
               analysis, design, and project execution.

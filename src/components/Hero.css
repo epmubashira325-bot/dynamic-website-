@@ -1,0 +1,381 @@
+/* src/components/Hero.css */
+:root {
+  --color-primary: #C9A96E;
+  --color-primary-dark: #A88B4A;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  max-height: 900px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.hero-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+/* Placeholder */
+.hero-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a1a12 0%, #1a3a2a 100%);
+  position: relative;
+}
+
+.hero-placeholder-content {
+  text-align: center;
+  padding: 2rem;
+  color: #ffffff;
+}
+
+.hero-placeholder-content h1 {
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  color: var(--color-primary);
+  letter-spacing: 1px;
+}
+
+.hero-placeholder-content p {
+  font-size: 1.25rem;
+  font-weight: 300;
+  opacity: 0.9;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+/* Overlay - Centered */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-title {
+  color: var(--color-primary);
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+}
+
+.hero-subtitle {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0.9;
+  letter-spacing: 2px;
+}
+
+/* Controls */
+.hero-controls {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  z-index: 10;
+}
+
+.hero-control-btn,
+.hero-play-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  color: var(--color-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-control-btn:hover,
+.hero-play-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
+}
+
+.hero-play-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-play-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
+}
+
+/* Progress Bar */
+.hero-progress-bar {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  max-width: 600px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.hero-progress-fill {
+  height: 100%;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+/* Dots Navigation */
+.hero-dots {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.hero-dot {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.hero-dot.active {
+  background: #ffffff;
+  transform: scale(1.2);
+  border-color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+/* Loading State */
+.hero-loading {
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  color: var(--color-primary);
+  gap: 1.5rem;
+}
+
+.hero-loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.05);
+  border-top: 3px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.hero-loading p {
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 0.6;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error State */
+.hero-error {
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  color: var(--color-primary);
+  gap: 1.5rem;
+}
+
+.hero-error p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  opacity: 0.7;
+  color: #ffffff;
+}
+
+.hero-error button {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.hero-error button:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 80vh;
+    min-height: 400px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-overlay {
+    padding: 2rem 1rem 2rem;
+  }
+
+  .hero-controls {
+    bottom: 100px;
+    gap: 0.75rem;
+  }
+
+  .hero-control-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 0.875rem;
+  }
+
+  .hero-play-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+  }
+
+  .hero-progress-bar {
+    width: 80%;
+    bottom: 70px;
+  }
+
+  .hero-dots {
+    bottom: 40px;
+    gap: 0.5rem;
+  }
+
+  .hero-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .hero-placeholder-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-placeholder-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-controls {
+    bottom: 90px;
+  }
+
+  .hero-control-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.75rem;
+  }
+
+  .hero-play-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 0.875rem;
+  }
+
+  .hero-progress-bar {
+    bottom: 65px;
+  }
+
+  .hero-dots {
+    bottom: 35px;
+  }
+}

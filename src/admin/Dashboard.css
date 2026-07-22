@@ -1,0 +1,141 @@
+.dash {
+  max-width: 1100px;
+}
+
+.dash-topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.dash-topbar h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0d3b2e;
+  margin: 0 0 4px;
+}
+
+.dash-topbar p {
+  color: #6b7c76;
+  font-size: 14px;
+  margin: 0;
+}
+
+.dash-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  padding: 8px 14px 8px 8px;
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(13, 59, 46, 0.08);
+}
+
+.dash-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #1f7a4d;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.dash-profile span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0d3b2e;
+}
+
+/* Stat cards */
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 1px 3px rgba(13, 59, 46, 0.08);
+  border-top: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #6b7c76;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 30px;
+  font-weight: 700;
+  color: #0d3b2e;
+}
+
+/* Quick links */
+.dash-links h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0d3b2e;
+  margin-bottom: 14px;
+}
+
+.dash-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.dash-link-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(13, 59, 46, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dash-link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13, 59, 46, 0.12);
+}
+
+.dash-link-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.dash-link-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0d3b2e;
+  margin: 0 0 3px;
+}
+
+.dash-link-card p {
+  font-size: 13px;
+  color: #6b7c76;
+  margin: 0;
+}
+
+.dash-link-arrow {
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 18px;
+}

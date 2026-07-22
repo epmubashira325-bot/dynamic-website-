@@ -1,0 +1,81 @@
+.testi {
+  position: relative;
+  padding: var(--section-padding) 0;
+  background: var(--color-bg-alt);
+  overflow: hidden;
+}
+
+.testi__bg {
+  position: absolute; inset: 0; z-index: 0;
+}
+.testi__bg-video {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: blur(10px) grayscale(50%);
+  transform: scale(1.1); /* Prevent blurred edges */
+}
+.testi__bg-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,10,10,0.85); /* Dark overlay */
+}
+
+.testi__header { text-align: center; margin-bottom: 3.5rem; position: relative; z-index: 1; }
+
+.testi__card {
+  display: flex; flex-direction: column;
+  overflow: hidden; border-radius: var(--radius-lg);
+  height: 100%;
+  background: rgba(255,255,255,0.03); /* More transparent for video bg */
+  backdrop-filter: blur(10px);
+}
+.testi__card-img-wrap {
+  aspect-ratio: 16/9; overflow: hidden;
+}
+.testi__card-project-img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.testi__card:hover .testi__card-project-img { transform: scale(1.05); }
+
+.testi__card-body {
+  padding: 1.75rem; display: flex; flex-direction: column; gap: 0.85rem; flex: 1;
+}
+.testi__quote-icon {
+  color: var(--color-gold); font-size: 1rem; opacity: 0.35;
+}
+.testi__card-quote {
+  font-family: var(--font-serif);
+  font-size: 1rem; font-style: italic;
+  color: var(--color-text); line-height: 1.7; flex: 1;
+}
+.testi__card-stars {
+  display: flex; gap: 0.2rem; color: var(--color-gold); font-size: 0.75rem;
+}
+.testi__card-author {
+  display: flex; align-items: center; gap: 0.85rem;
+  border-top: 1px solid var(--color-border); padding-top: 1rem;
+}
+.testi__avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600;
+  color: var(--color-bg); flex-shrink: 0;
+}
+.testi__card-name {
+  font-family: var(--font-serif);
+  font-size: 1rem; color: var(--color-white); margin-bottom: 0.1rem;
+}
+.testi__card-role { font-size: 0.75rem; color: var(--color-text-muted); }
+
+/* Dots */
+.testi__dots {
+  display: flex; justify-content: center; gap: 0.4rem; margin-top: 2.5rem;
+}
+.testi__dots .swiper-pagination-bullet {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.testi__dots .swiper-pagination-bullet-active {
+  width: 28px; border-radius: 4px;
+  background: var(--color-gold);
+}

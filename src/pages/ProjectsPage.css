@@ -1,0 +1,558 @@
+/* =======================================
+   PROJECTS PAGE - SCROLLING VERSION
+   ======================================= */
+
+.portfolio-page {
+  min-height: 100vh;
+  background: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* =======================================
+   LOADING SPINNER
+   ======================================= */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 20px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #333333;
+  border-top: 4px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =======================================
+   PROJECTS CONTAINER
+   ======================================= */
+
+.projects-container {
+  position: relative;
+}
+
+/* =======================================
+   PROJECT WRAPPER (Each Project)
+   ======================================= */
+
+.project-wrapper {
+  width: 100%;
+  height: 200vh;
+  /* 2 viewport heights - image + description */
+  position: relative;
+}
+
+/* =======================================
+   PROJECT IMAGE SECTION (FULL SCREEN)
+   ======================================= */
+
+.project-image-section {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  /* Full viewport height */
+  overflow: hidden;
+  z-index: 1;
+}
+
+.project-image__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  transform: scale(1);
+  transition: transform 8s ease;
+}
+
+.project-image-section:hover .project-image__bg {
+  transform: scale(1.05);
+}
+
+.project-image__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.05) 40%,
+      rgba(0, 0, 0, 0.4) 70%,
+      rgba(0, 0, 0, 0.7) 100%);
+  z-index: 2;
+}
+
+/* Project Title Overlay - Bottom of Image */
+.project-image__title {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.project-image__title h1 {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+/* =======================================
+   PROJECT DESCRIPTION SECTION
+   ======================================= */
+
+.project-description-section {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  /* Full viewport height */
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 60px 40px;
+}
+
+.project-description__container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.project-description__content {
+  text-align: center;
+}
+
+.project-description__divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+  margin: 0 auto 30px;
+  opacity: 0.6;
+}
+
+.project-description__text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* =======================================
+   FIXED NAVIGATION CONTROLS
+   ======================================= */
+
+.project-navigation {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+/* Project Counter */
+.project-counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Georgia', serif;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 2px;
+}
+
+.project-counter__current {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.project-counter__separator {
+  margin: 0 5px;
+}
+
+.project-counter__total {
+  font-size: 1.2rem;
+}
+
+/* Control Buttons */
+.project-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.project-controls__btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.project-controls__btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+}
+
+.project-controls__btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.project-controls__btn--prev svg {
+  order: -1;
+}
+
+.project-controls__btn--next svg {
+  order: 1;
+}
+
+/* Progress Dots */
+.project-dots {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.project-dots__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.project-dots__dot:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.2);
+}
+
+.project-dots__dot--active {
+  width: 30px;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+/* =======================================
+   RESPONSIVE DESIGN
+   ======================================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .project-description-section {
+    padding: 50px 30px;
+  }
+
+  .project-image__title {
+    bottom: 60px;
+  }
+
+  .project-image__title h1 {
+    font-size: clamp(2rem, 4.5vw, 3.8rem);
+  }
+
+  .project-description__text {
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+  }
+
+  .project-navigation {
+    bottom: 30px;
+    right: 30px;
+    gap: 15px;
+  }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+  .project-wrapper {
+    height: 200vh;
+  }
+
+  .project-image__title {
+    bottom: 50px;
+  }
+
+  .project-image__title h1 {
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    letter-spacing: 2px;
+  }
+
+  .project-image__overlay {
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.1) 40%,
+        rgba(0, 0, 0, 0.5) 70%,
+        rgba(0, 0, 0, 0.8) 100%);
+  }
+
+  .project-description-section {
+    padding: 40px 20px;
+  }
+
+  .project-description__divider {
+    width: 60px;
+    margin-bottom: 20px;
+  }
+
+  .project-description__text {
+    font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+    line-height: 1.7;
+  }
+
+  .project-navigation {
+    bottom: 25px;
+    right: 20px;
+    gap: 15px;
+  }
+
+  .project-counter {
+    font-size: 1rem;
+  }
+
+  .project-counter__current {
+    font-size: 1.5rem;
+  }
+
+  .project-controls__btn {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+
+  .project-controls__btn span {
+    display: none;
+  }
+
+  .project-controls__btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .project-dots__dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .project-dots__dot--active {
+    width: 25px;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .project-wrapper {
+    height: 200vh;
+  }
+
+  .project-image__title {
+    bottom: 40px;
+  }
+
+  .project-image__title h1 {
+    font-size: clamp(1.2rem, 3vw, 1.9rem);
+    letter-spacing: 1px;
+  }
+
+  .project-image__overlay {
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.2) 40%,
+        rgba(0, 0, 0, 0.6) 70%,
+        rgba(0, 0, 0, 0.9) 100%);
+  }
+
+  .project-description-section {
+    padding: 30px 15px;
+  }
+
+  .project-description__divider {
+    width: 40px;
+    margin-bottom: 15px;
+  }
+
+  .project-description__text {
+    font-size: clamp(0.85rem, 0.9vw, 0.95rem);
+    line-height: 1.6;
+  }
+
+  .project-navigation {
+    bottom: 20px;
+    right: 15px;
+    gap: 12px;
+  }
+
+  .project-counter {
+    font-size: 0.9rem;
+  }
+
+  .project-counter__current {
+    font-size: 1.3rem;
+  }
+
+  .project-controls__btn {
+    padding: 6px 12px;
+    border-radius: 25px;
+  }
+
+  .project-controls__btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .project-dots {
+    gap: 8px;
+  }
+
+  .project-dots__dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .project-dots__dot--active {
+    width: 20px;
+  }
+}
+
+/* =======================================
+   SCROLLBAR STYLING
+   ======================================= */
+
+.portfolio-page::-webkit-scrollbar {
+  width: 8px;
+}
+
+.portfolio-page::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+.portfolio-page::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+.portfolio-page::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+/* Firefox scrollbar */
+.portfolio-page {
+  scrollbar-width: thin;
+  scrollbar-color: #333333 #0a0a0a;
+}
+
+/* =======================================
+   TEXT SELECTION
+   ======================================= */
+
+::selection {
+  background: #ffffff;
+  color: #000000;
+}
+
+::-moz-selection {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* =======================================
+   ERROR & RETRY STYLES
+   ======================================= */
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.error-title {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.error-message {
+  color: #b0b0b0;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  max-width: 500px;
+}
+
+.retry-button {
+  padding: 12px 32px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.retry-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.retry-button:active {
+  transform: translateY(0);
+}

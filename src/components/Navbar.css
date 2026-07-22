@@ -1,0 +1,192 @@
+/* ========================================
+   NAVBAR
+   ======================================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.25rem 0;
+  /* py-5 equivalent */
+  min-height: 85px;
+  background: #0B0B0B;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.navbar--scrolled {
+  /* Removed transparency and padding changes to keep it solid and uniform */
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+}
+
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.navbar__logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  text-decoration: none;
+  z-index: 1001;
+}
+
+.navbar__logo-main {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+}
+
+.navbar__logo-accent {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 300;
+  color: var(--color-gold);
+  letter-spacing: 0.05em;
+}
+
+/* Minimalist Hamburger Toggle */
+.navbar__toggle {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  z-index: 1001;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.hamburger {
+  width: 32px;
+  height: 22px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-white);
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center left;
+}
+
+.hamburger--open span:nth-child(1) {
+  transform: rotate(45deg) translate(2px, -3px);
+  width: 34px;
+}
+
+.hamburger--open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.hamburger--open span:nth-child(3) {
+  transform: rotate(-45deg) translate(2px, 3px);
+  width: 34px;
+}
+
+/* ========================================
+   FULLSCREEN MENU
+   ======================================== */
+/* ========================================
+   FULLSCREEN MENU
+   ======================================== */
+.fullscreen-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 95px;
+  /* Offset for the sticky header to center in remaining viewport */
+}
+
+.fullscreen-menu__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  /* ~24px spacing between items */
+  width: 100%;
+  padding: 2rem;
+  max-height: calc(100vh - 95px);
+  /* Ensure it doesn't overflow past the offset */
+  overflow-y: auto;
+  /* Fallback in case screen is extremely small */
+}
+
+.fullscreen-menu__item-wrapper {
+  overflow: hidden;
+  /* For underline reveal animation */
+}
+
+.fullscreen-menu__link {
+  display: inline-block;
+  font-family: var(--font-serif);
+  /* INCREASED SLIGHTLY - balanced middle ground */
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: var(--color-white);
+  padding: 0.25rem 1rem;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  letter-spacing: 0.02em;
+}
+
+.fullscreen-menu__link-text {
+  display: block;
+  transition: letter-spacing 0.5s ease;
+}
+
+.fullscreen-menu__link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-gold);
+  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fullscreen-menu__link:hover .fullscreen-menu__link-text,
+.fullscreen-menu__link--active .fullscreen-menu__link-text {
+  letter-spacing: 0.08em;
+  color: var(--color-gold);
+}
+
+.fullscreen-menu__link:hover::after,
+.fullscreen-menu__link--active::after {
+  width: 80%;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+
+  .navbar__logo-main,
+  .navbar__logo-accent {
+    font-size: 1.7rem;
+  }
+
+  /* Slightly larger on mobile too */
+  .fullscreen-menu__link {
+    font-size: clamp(1.8rem, 5.5vw, 2.6rem);
+  }
+}

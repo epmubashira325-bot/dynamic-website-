@@ -1,110 +1,51 @@
-import {
-  FaAward,
-  FaUsers,
-  FaClock,
-  FaHandshake,
-} from "react-icons/fa";
-
 import { motion } from "framer-motion";
+import {
+  FaCubes, FaCouch, FaDraftingCompass, FaHardHat, FaTasks, FaShieldAlt,
+} from "react-icons/fa";
+import { whyChooseUsData } from "../data/videoData";
+import "./WhyChooseUs.css";
 
-const features = [
-  {
-    icon: <FaAward size={35} />,
-    title: "Quality Work",
-    description:
-      "We maintain the highest construction standards using premium materials and expert craftsmanship.",
-  },
-  {
-    icon: <FaUsers size={35} />,
-    title: "Experienced Team",
-    description:
-      "Our architects, engineers and designers work together to deliver outstanding results.",
-  },
-  {
-    icon: <FaClock size={35} />,
-    title: "On-Time Delivery",
-    description:
-      "Projects are completed efficiently without compromising quality or attention to detail.",
-  },
-  {
-    icon: <FaHandshake size={35} />,
-    title: "Client Satisfaction",
-    description:
-      "Every project is tailored to the client's vision with complete transparency and professionalism.",
-  },
-];
+const iconMap = { FaCubes, FaCouch, FaDraftingCompass, FaHardHat, FaTasks, FaShieldAlt };
 
 function WhyChooseUs() {
   return (
-    <section className="py-24 bg-white">
-
-      <div className="max-w-7xl mx-auto px-8">
-
-        {/* Heading */}
-
-        <div className="text-center mb-16">
-
-          <p className="uppercase tracking-[6px] text-amber-500 font-semibold">
-            Why Choose Us
-          </p>
-
-          <h2 className="text-5xl font-bold mt-4 text-gray-900">
-            Building Excellence
-            <br />
-            With Every Project
-          </h2>
-
-          <p className="mt-6 text-gray-600 max-w-3xl mx-auto leading-8">
-            We combine engineering expertise, innovative
-            design and quality construction to deliver
-            exceptional residential and commercial projects.
-          </p>
-
+    <section className="why" id="why-choose-us">
+      <div className="luxury-container">
+        <div className="why__header">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <p className="luxury-subheading">The AM Advantage</p>
+            <h2 className="luxury-heading">Why Choose Us</h2>
+            <div className="section-divider" style={{ margin: "1.5rem auto" }} />
+          </motion.div>
         </div>
 
-        {/* Cards */}
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-          {features.map((item, index) => (
-
-            <motion.div
-              key={index}
-              whileHover={{
-                y: -10,
-              }}
-              transition={{
-                duration: .3,
-              }}
-              className="bg-gray-50 rounded-2xl p-8 shadow hover:shadow-xl transition"
-            >
-
-              <div className="w-20 h-20 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 mb-6">
-
-                {item.icon}
-
-              </div>
-
-              <h3 className="text-2xl font-bold">
-
-                {item.title}
-
-              </h3>
-
-              <p className="mt-5 text-gray-600 leading-7">
-
-                {item.description}
-
-              </p>
-
-            </motion.div>
-
-          ))}
-
+        <div className="why__grid">
+          {whyChooseUsData.map((item, i) => {
+            const Icon = iconMap[item.icon];
+            return (
+              <motion.div
+                key={i}
+                className="why__card glass-card glow-border-hover"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true, margin: "-40px" }}
+              >
+                <div className="why__card-icon">
+                  {Icon && <Icon />}
+                </div>
+                <h3 className="why__card-title">{item.title}</h3>
+                <p className="why__card-desc">{item.desc}</p>
+              </motion.div>
+            );
+          })}
         </div>
-
       </div>
-
     </section>
   );
 }

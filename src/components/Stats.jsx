@@ -1,88 +1,87 @@
-import { FaBuilding, FaCalendarAlt, FaAward } from "react-icons/fa";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { statsData } from "../data/videoData";
+import { useCompanyStatistics } from "../hooks/useCompanyStatistics";
+import "./Stats.css";
 
-const stats = [
-  {
-    icon: <FaBuilding size={32} />,
-    number: "30+",
-    title: "Projects Completed",
-    description:
-      "Successfully delivered residential, commercial and industrial projects.",
-  },
-  {
-    icon: <FaCalendarAlt size={32} />,
-    number: "5+",
-    title: "Years Experience",
-    description:
-      "Providing reliable engineering and construction expertise for years.",
-  },
-  {
-    icon: <FaAward size={32} />,
-    number: "100%",
-    title: "Quality Assurance",
-    description:
-      "Committed to maintaining the highest standards in every project.",
-  },
-];
+function AnimatedCounter({ target, suffix, isVisible }) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!isVisible) return;
+    let start = 0;
+    const duration = 2200;
+    const inc = target / (duration / 16);
+    let raf;
+    const animate = () => {
+      start += inc;
+      if (start >= target) { setCount(target); return; }
+      setCount(Math.floor(start));
+      raf = requestAnimationFrame(animate);
+    };
+    raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
+  }, [isVisible, target]);
+  return <>{count}{suffix}</>;
+}
+
+// Merges live values from /api/statistics/ onto statsData by matching each
+// item's label. Items with no backend match (e.g. Professional Experts)
+// keep their static "number" from videoData.js.
+function mergeLiveStats(items, liveStats) {
+  if (!liveStats) return items;
+
+  return items.map((item) => {
+    const label = item.label.toLowerCase();
+    let liveValue;
+
+    if (label.includes("experience")) liveValue = liveStats.years_experience;
+    else if (label.includes("project")) liveValue = liveStats.completed_projects;
+    else if (label.includes("client")) liveValue = liveStats.happy_clients;
+
+    return liveValue !== undefined && liveValue !== null
+      ? { ...item, number: liveValue }
+      : item;
+  });
+}
 
 function Stats() {
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const { stats } = useCompanyStatistics();
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.3 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  const displayStats = mergeLiveStats(statsData, stats);
+
   return (
-    <section className="py-28 bg-gradient-to-r from-gray-900 via-gray-800 to-black">
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-
-          <p className="uppercase tracking-[6px] text-amber-400 font-semibold">
-            Our Achievements
-          </p>
-
-          <h2 className="text-5xl font-bold text-white mt-5">
-            Numbers That Reflect Our Excellence
-          </h2>
-
-          <p className="text-gray-400 text-lg leading-8 mt-6">
-            We are committed to delivering innovative engineering solutions,
-            exceptional quality, and customer satisfaction through every project
-            we undertake.
-          </p>
-
-        </div>
-
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
-
-          {stats.map((item, index) => (
-
+    <section className="stats" ref={sectionRef} id="stats-section">
+      <div className="luxury-container">
+        <div className="stats__grid">
+          {displayStats.map((item, i) => (
             <motion.div
-              key={index}
-              whileHover={{ y: -8, scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-10 text-center shadow-xl hover:shadow-amber-500/20"
+              key={i}
+              className="stats__item"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.12 }}
+              viewport={{ once: true }}
             >
-
-              <div className="w-20 h-20 mx-auto rounded-full bg-amber-500 flex items-center justify-center text-white mb-8">
-                {item.icon}
-              </div>
-
-              <h3 className="text-5xl font-bold text-white">
-                {item.number}
-              </h3>
-
-              <h4 className="text-xl font-semibold text-white mt-4">
-                {item.title}
-              </h4>
-
-              <p className="text-gray-400 mt-4 leading-7">
-                {item.description}
-              </p>
-
+              <span className="stats__number">
+                <AnimatedCounter target={item.number} suffix={item.suffix} isVisible={isVisible} />
+              </span>
+              <span className="stats__label">{item.label}</span>
             </motion.div>
-
           ))}
-
         </div>
-
       </div>
     </section>
   );

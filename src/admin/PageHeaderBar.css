@@ -1,0 +1,33 @@
+.page-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(13, 59, 46, 0.08);
+}
+
+.page-header-bar h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0d3b2e;
+  margin: 0;
+}
+
+.page-header-bar .add-btn {
+  background: #1f7a4d;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.page-header-bar .add-btn:hover {
+  background: #196b42;
+}
