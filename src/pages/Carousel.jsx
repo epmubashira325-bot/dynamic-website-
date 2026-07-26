@@ -146,6 +146,7 @@ function DeleteCarouselConfirmModal({ item, onCancel, onConfirm, deleting }) {
 function CarouselFormModal({ mode, formData, onChange, onFile, currentMediaUrl, onSubmit, onClose, saving }) {
   const [previewUrl, setPreviewUrl] = useState(currentMediaUrl || null);
   const fileInputRef = useRef(null);
+  const isVideo = formData.media_type === "video";
 
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];
@@ -161,12 +162,18 @@ function CarouselFormModal({ mode, formData, onChange, onFile, currentMediaUrl, 
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
+  const handleTypeChange = (type) => {
+    onChange({ target: { name: "media_type", value: type } });
+    setPreviewUrl(null);
+    onFile(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
   return (
     <div className="carousel-modal-overlay" onClick={onClose}>
       <div className="carousel-modal" onClick={(e) => e.stopPropagation()}>
         <div className="carousel-modal-header">
           <div className="carousel-modal-header-content">
-
             <h3>{mode === "add" ? "Add New Slide" : "Edit Slide"}</h3>
           </div>
           <button onClick={onClose} className="carousel-modal-close" disabled={saving}>
@@ -189,28 +196,77 @@ function CarouselFormModal({ mode, formData, onChange, onFile, currentMediaUrl, 
             />
           </div>
 
+          {/* Media type toggle */}
           <div className="carousel-form-group">
-            <label htmlFor="video">
-              Video {mode === "add" && <span className="required">*</span>}
+            <label>
+              Media Type <span className="required">*</span>
+            </label>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <button
+                type="button"
+                onClick={() => handleTypeChange("video")}
+                disabled={saving}
+                style={{
+                  flex: 1,
+                  padding: "10px",
+                  borderRadius: "8px",
+                  border: isVideo ? "2px solid #065f46" : "1px solid #ccc",
+                  background: isVideo ? "#065f46" : "#fff",
+                  color: isVideo ? "#fff" : "#333",
+                  fontWeight: 600,
+                  cursor: saving ? "not-allowed" : "pointer",
+                  transition: ".2s"
+                }}
+              >
+                Video
+              </button>
+              <button
+                type="button"
+                onClick={() => handleTypeChange("image")}
+                disabled={saving}
+                style={{
+                  flex: 1,
+                  padding: "10px",
+                  borderRadius: "8px",
+                  border: !isVideo ? "2px solid #065f46" : "1px solid #ccc",
+                  background: !isVideo ? "#065f46" : "#fff",
+                  color: !isVideo ? "#fff" : "#333",
+                  fontWeight: 600,
+                  cursor: saving ? "not-allowed" : "pointer",
+                  transition: ".2s"
+                }}
+              >
+                Image
+              </button>
+            </div>
+          </div>
+
+          <div className="carousel-form-group">
+            <label htmlFor="media">
+              {isVideo ? "Video" : "Image"} {mode === "add" && <span className="required">*</span>}
             </label>
             <div className="carousel-file-upload">
               <input
                 type="file"
-                id="video"
+                id="media"
                 ref={fileInputRef}
                 onChange={handleFileChange}
-                accept="video/*"
+                accept={isVideo ? "video/*" : "image/*"}
                 className="carousel-file-input"
               />
               <div className="carousel-upload-area">
                 <FaUpload className="upload-icon" />
-                <span>Click or drag to upload video</span>
-                <small>MP4, WebM, MOV — up to 100MB</small>
+                <span>Click or drag to upload {isVideo ? "video" : "image"}</span>
+                <small>{isVideo ? "MP4, WebM, MOV — up to 6MB" : "JPG, PNG, WebP — up to 5MB"}</small>
               </div>
             </div>
             {previewUrl && (
               <div className="carousel-video-preview">
-                <video src={previewUrl} controls />
+                {isVideo ? (
+                  <video src={previewUrl} controls />
+                ) : (
+                  <img src={previewUrl} alt="preview" style={{ width: "100%", borderRadius: "8px" }} />
+                )}
                 <button type="button" className="remove-video-btn" onClick={handleRemoveFile}>
                   <FaTimes />
                 </button>
@@ -218,7 +274,11 @@ function CarouselFormModal({ mode, formData, onChange, onFile, currentMediaUrl, 
             )}
             {mode === "edit" && !previewUrl && currentMediaUrl && (
               <div className="carousel-video-preview">
-                <video src={currentMediaUrl} controls />
+                {isVideo ? (
+                  <video src={currentMediaUrl} controls />
+                ) : (
+                  <img src={currentMediaUrl} alt="current" style={{ width: "100%", borderRadius: "8px" }} />
+                )}
               </div>
             )}
           </div>
@@ -452,17 +512,33 @@ function Carousel() {
     setFormData(emptyForm);
   };
 
-  const validateFile = (file) => {
-    const MAX_VIDEO_SIZE = 100 * 1024 * 1024;
+  // Validate file based on selected media type
+  const validateFile = (file, mediaType) => {
+    const MAX_VIDEO_SIZE = 6 * 1024 * 1024;   // 6MB
+    const MAX_IMAGE_SIZE = 5 * 1024 * 1024;   // 5MB (matches backend limit)
+
     if (!file) return { valid: false, message: "No file selected" };
-    if (!file.type.startsWith("video/")) {
-      return { valid: false, message: `File must be a video. Current type: ${file.type || "unknown"}` };
-    }
-    if (file.size > MAX_VIDEO_SIZE) {
-      return {
-        valid: false,
-        message: `Video file is too large (${Math.round(file.size / (1024 * 1024))}MB). Maximum size is 100MB`
-      };
+
+    if (mediaType === "video") {
+      if (!file.type.startsWith("video/")) {
+        return { valid: false, message: `File must be a video. Current type: ${file.type || "unknown"}` };
+      }
+      if (file.size > MAX_VIDEO_SIZE) {
+        return {
+          valid: false,
+          message: `Video file is too large (${Math.round(file.size / (1024 * 1024))}MB). Maximum size is 6MB`
+        };
+      }
+    } else {
+      if (!file.type.startsWith("image/")) {
+        return { valid: false, message: `File must be an image. Current type: ${file.type || "unknown"}` };
+      }
+      if (file.size > MAX_IMAGE_SIZE) {
+        return {
+          valid: false,
+          message: `Image file is too large (${Math.round(file.size / (1024 * 1024))}MB). Maximum size is 5MB`
+        };
+      }
     }
     return { valid: true, message: "" };
   };
@@ -473,11 +549,11 @@ function Carousel() {
       return;
     }
     if (modalMode === "add" && !formData.file) {
-      pushToast("Please select a video", "error");
+      pushToast(`Please select a ${formData.media_type}`, "error");
       return;
     }
     if (formData.file) {
-      const validation = validateFile(formData.file);
+      const validation = validateFile(formData.file, formData.media_type);
       if (!validation.valid) {
         pushToast(validation.message, "error");
         return;
@@ -490,7 +566,9 @@ function Carousel() {
       data.append("title", formData.title.trim());
       data.append("media_type", formData.media_type);
       data.append("is_active", formData.is_active ? "true" : "false");
-      if (formData.file) data.append("video", formData.file);
+      if (formData.file) {
+        data.append(formData.media_type === "video" ? "video" : "image", formData.file);
+      }
 
       let response;
       if (modalMode === "edit" && editingItem) {
@@ -513,6 +591,8 @@ function Carousel() {
         if (typeof errorData === "object") {
           if (errorData.video) {
             errorMessage = `Video: ${Array.isArray(errorData.video) ? errorData.video.join(", ") : errorData.video}`;
+          } else if (errorData.image) {
+            errorMessage = `Image: ${Array.isArray(errorData.image) ? errorData.image.join(", ") : errorData.image}`;
           } else if (errorData.title) {
             errorMessage = `Title: ${Array.isArray(errorData.title) ? errorData.title.join(", ") : errorData.title}`;
           } else {
@@ -645,7 +725,7 @@ function Carousel() {
             <thead>
               <tr>
                 <th className="table-header id-col">#</th>
-                <th className="table-header video-col">VIDEO</th>
+                <th className="table-header video-col">MEDIA</th>
                 <th className="table-header title-col">TITLE</th>
                 <th className="table-header status-col">STATUS</th>
                 <th className="table-header actions-col">ACTIONS</th>
@@ -684,7 +764,7 @@ function Carousel() {
                         <img src={item.image} alt={item.title} className="carousel-video-thumb" />
                       ) : (
                         <span className="no-video">
-                          <FaVideo /> No video
+                          <FaVideo /> No media
                         </span>
                       )}
                     </td>
