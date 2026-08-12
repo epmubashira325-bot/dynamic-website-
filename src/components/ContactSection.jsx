@@ -86,7 +86,7 @@ function ContactSection() {
           {/* Quick Contact */}
           <div className="contact__quick">
             <a
-              href={`https://wa.me/919037917704`}
+              href={`https://wa.me/919567406887`}
               target="_blank"
               rel="noreferrer"
               className="contact__whatsapp"

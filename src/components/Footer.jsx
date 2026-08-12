@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaArrowUp } from "react-icons/fa";
 import footer from "../data/footerData";
 import "./Footer.css";
-
 function Footer() {
   return (
     <footer className="footer">
@@ -14,7 +13,6 @@ function Footer() {
             <span className="footer__logo-accent">Associates</span>
           </Link>
         </div>
-
         {/* Links Row */}
         <div className="footer__links-row">
           <div className="footer__links-group">
@@ -33,11 +31,11 @@ function Footer() {
               <p className="footer__address">
                 Sairam complex,<br />
                 Malampuzha 100ft road, Puthur,
-
                 Palakkad 
               </p>
             </div>
           </div>
+          {/*
           <div className="footer__links-group">
             <h4 className="footer__links-title">Follow Us</h4>
             <div className="footer__socials">
@@ -45,8 +43,8 @@ function Footer() {
               <a href={footer.social?.instagram || "#"} target="_blank" rel="noreferrer"><FaInstagram /></a>
             </div>
           </div>
+          */}
         </div>
-
         {/* Bottom */}
         <div className="footer__bottom">
           <p>&copy; {new Date().getFullYear()} AM Associates. All Rights Reserved.</p>
@@ -56,8 +54,6 @@ function Footer() {
         </div>
       </div>
     </footer>
-
   );
 }
-
 export default Footer;

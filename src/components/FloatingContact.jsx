@@ -6,7 +6,7 @@ import "./FloatingContact.css";
 // Replace with your actual WhatsApp business number.
 // Format: country code + number, NO plus sign, NO spaces.
 // Example India +91 98765 43210 → "919876543210"
-const WHATSAPP_NUMBER = "919037917704";
+const WHATSAPP_NUMBER = "919567406887";
 const WHATSAPP_MESSAGE = "Hello! I'm interested in your services.";
 // ─────────────────────────────────────────────────────────────
 

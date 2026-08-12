@@ -4,7 +4,7 @@ const footerData = {
   description:
     "Amarnath Associates is a trusted structural engineering company in Palakkad, delivering innovative, sustainable, and cost-effective engineering solutions for residential, commercial, and industrial projects.",
 
-  phone: "+91 9037917704",
+  phone: "+91 9567406887",
 
   email: "contact@theamassociates.com",
 

@@ -196,7 +196,7 @@ const ContactPage = () => {
       content: (
         <>
           <p>
-            <a href="tel:+919037917704">+91 9037917704</a>
+            <a href="tel:+919567406887">+91 9567406887</a>
           </p>
           <p className="contact-card__hours">Mon - Sat, 9:00 AM - 6:00 PM</p>
         </>

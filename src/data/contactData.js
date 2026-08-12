@@ -18,7 +18,7 @@ export const contactDetails = [
     id: "phone",
     icon: "FaPhoneAlt",
     title: "Phone Number",
-    line1: "+91 9037917704",
+    line1: "+91 9567406887",
     line2: "Mon - Sat, 9:00 AM - 6:00 PM",
     line3: ""
   },
