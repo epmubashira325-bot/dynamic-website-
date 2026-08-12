@@ -91,10 +91,7 @@ const StructuralEngineering = () => {
         steps={processSteps}
       />
       
-      <FAQSection 
-        title="Frequently Asked Questions"
-        faqs={faqs}
-      />
+      
       
       <CTASection 
         title="Ready to Build With Confidence?"

@@ -33,11 +33,7 @@ const ArchitectureSupport = () => {
       description: "Integrating eco-friendly materials and energy-efficient designs to create sustainable, future-proof buildings.",
       icon: "🌿"
     },
-    {
-      title: "Urban Planning",
-      description: "Designing large-scale developments that harmonize with their surroundings and enhance community living.",
-      icon: "🏙️"
-    }
+
   ];
 
   const processSteps = [
@@ -74,9 +70,8 @@ const ArchitectureSupport = () => {
       />
       
       <ServiceOverview 
-        title="Form Meets Function"
-        description1="Great architecture is born from the intersection of artistic vision and practical engineering. Our architectural services are dedicated to creating spaces that elevate the human experience."
-        description2="We approach every project as a unique narrative. By listening closely to our clients and understanding the context of the site, we design buildings that are not only visually stunning but also highly responsive to the needs of those who inhabit them."
+        
+        description1="We provide professional architecture support based on your project requirements. Through our association with experienced architecture firms, we can connect you with the right professionals and help coordinate the required architectural services for your project."
         image={heroImg}
       />
       
@@ -90,10 +85,6 @@ const ArchitectureSupport = () => {
         steps={processSteps}
       />
       
-      <FAQSection 
-        title="Frequently Asked Questions"
-        faqs={faqs}
-      />
       
       <CTASection 
         title="Visualize Your Future Space"

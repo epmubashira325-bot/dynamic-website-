@@ -164,7 +164,7 @@ function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            We provide comprehensive architectural, structural engineering, and premium interior design solutions.
+            We provide structural engineering, construction, interior design  solution support.
           </motion.p>
         </div>
       </section>

@@ -56,8 +56,8 @@ export const premiumSectionsData = [
     id: "architecture",
     sectionId: "architecture",
     src: "https://videos.pexels.com/video-files/17224631/17224631-uhd_2560_1440_30fps.mp4",
-    heading: "Architecture",
-    description: "Innovative architectural designs that combine creativity with structural excellence.",
+    heading: "Architecture &\nInterior Design",
+    description: "Professional architectural and interior design solutions delivered through our trusted network of experienced design partners",
     buttonText: "View Architecture",
     link: "/projects",
     category: "architecture"
@@ -222,33 +222,33 @@ export const videoShowcaseData = [
 export const whyChooseUsData = [
   {
     icon: "FaCubes",
-    title: "Structural Engineering",
-    desc: "Delivering safe and efficient structural solutions for every scale.",
+    title: "Engineering - Driven Approch",
+
   },
   {
     icon: "FaCouch",
-    title: "Interior Design",
-    desc: "Creating elegant and timeless living spaces.",
+    title: "Safe & Durable Structures",
+   
   },
   {
     icon: "FaDraftingCompass",
-    title: "Architecture",
-    desc: "Innovative architectural designs pushing boundaries.",
+    title: "Quality Design Approch",
+   
   },
   {
     icon: "FaHardHat",
-    title: "Construction",
-    desc: "Building spaces with precision and premium quality.",
+    title: "Safety Without Compromise",
+   
   },
   {
     icon: "FaTasks",
-    title: "Project Management",
-    desc: "Ensuring projects are completed on schedule seamlessly.",
+    title: "Transparent Process ",
+
   },
   {
     icon: "FaShieldAlt",
-    title: "Quality Assurance",
-    desc: "100% dedication to premium materials and durability.",
+    title: "Long Term Value",
+   
   },
 ];
 
@@ -305,7 +305,7 @@ export const statsData = [
   { number: 15, suffix: "+", label: "Years Experience" },
   { number: 500, suffix: "+", label: "Completed Projects" },
   { number: 300, suffix: "+", label: "Happy Clients" },
-  { number: 50, suffix: "+", label: "Professional Experts" },
+  { number: 100, suffix: "%", label: "Quality Assurance" },
 ];
 
 /* ========================================

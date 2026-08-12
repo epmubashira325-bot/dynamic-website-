@@ -6,7 +6,6 @@ import {
   ServiceOverview,
   ServiceFeatures,
   ServiceProcess,
-  FAQSection,
   CTASection
 } from '../components/ServiceReusableComponents';
 
@@ -20,45 +19,38 @@ const RenovationSupport = () => {
   const features = [
     {
       title: "Structural Assessment",
-      description: "Thorough evaluation of existing structures to identify load-bearing walls and determine renovation feasibility.",
+      description:
+        "Professional assessment of existing structures to identify renovation requirements and structural considerations.",
       icon: "🏚️"
     },
     {
-      title: "Space Optimization",
-      description: "Redesigning layouts to maximize natural light, improve flow, and increase usable square footage.",
+      title: "Space Planning",
+      description:
+        "Practical planning support to improve the functionality, layout, and overall use of existing spaces.",
       icon: "📏"
-    },
-    {
-      title: "Heritage Restoration",
-      description: "Carefully restoring historical features while integrating modern amenities and structural reinforcements.",
-      icon: "🏛️"
-    },
-    {
-      title: "Modern Upgrades",
-      description: "Updating electrical, plumbing, and HVAC systems to contemporary standards for improved efficiency.",
-      icon: "⚡"
     }
   ];
 
   const processSteps = [
-    { title: "Site Inspection", description: "Comprehensive survey of the existing property to understand constraints and potential." },
-    { title: "Design Proposal", description: "Presenting concepts that breathe new life into the space while respecting its original character." },
-    { title: "Approvals & Permits", description: "Navigating local regulations to obtain necessary permits for structural modifications." },
-    { title: "Demolition & Build", description: "Safe, systematic removal of old elements followed by precision construction of the new design." }
-  ];
-
-  const faqs = [
     {
-      question: "Can you remove a load-bearing wall during renovation?",
-      answer: "Yes, provided proper structural support (such as a steel beam) is designed and installed by our structural engineers before removal."
+      title: "Site Inspection",
+      description:
+        "Reviewing the existing property to understand its condition, requirements, and renovation possibilities."
     },
     {
-      question: "How do you handle unforeseen issues like old wiring or plumbing?",
-      answer: "Renovations often uncover hidden challenges. We conduct thorough initial surveys, but if issues arise, our team quickly proposes safe, cost-effective solutions."
+      title: "Renovation Planning",
+      description:
+        "Providing professional technical guidance and planning support based on the project's requirements."
     },
     {
-      question: "Will I need to vacate the property during the renovation?",
-      answer: "It depends on the scale of the project. For extensive structural changes, vacating is usually safer and allows for faster completion."
+      title: "Technical Support",
+      description:
+        "Offering engineering and construction-related support throughout the renovation process."
+    },
+    {
+      title: "Project Guidance",
+      description:
+        "Providing professional assistance to help ensure renovation work is carried out effectively and appropriately."
     }
   ];
 
@@ -68,36 +60,25 @@ const RenovationSupport = () => {
 
       <ServiceHero
         title="Renovation Support"
-        subtitle="Breathing new life into existing spaces with thoughtful design and structural expertise."
+        subtitle="Professional technical and engineering support for renovation projects."
         image={heroImg}
         breadcrumbText="Renovation Support"
       />
 
-      <ServiceOverview
-        title="Reimagining Your Space"
-        description1="Our renovation services give your home interiors and office spaces a stylish and sleek appearance. We carry out elite-level renovation works to help our clients to meet the modern requirements of life. Our experienced project managers gain a clear understanding of clients’ renovation needs. Renovations generally involve modifying the existing structure or addition of new interior elements to a building. We are revamp your space to give it a brand-new look!"
-        image={heroImg}
-      />
-
       <ServiceFeatures
-        title="Renovation Capabilities"
+        title="Renovation Support"
         features={features}
       />
 
       <ServiceProcess
-        title="Transformation Process"
+        title="Our Support Process"
         steps={processSteps}
       />
 
-      <FAQSection
-        title="Frequently Asked Questions"
-        faqs={faqs}
-      />
-
       <CTASection
-        title="Ready to Transform Your Property?"
-        text="Discover the true potential of your existing space with our expert renovation services."
-        btnText="Start Your Renovation"
+        title="Need Renovation Support?"
+        text="Get professional engineering and construction support for your renovation project."
+        btnText="Start Your Renovation Support"
         btnLink="/contact"
       />
 

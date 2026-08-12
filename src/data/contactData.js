@@ -1,7 +1,7 @@
 export const contactHero = {
   videoSrc: "https://www.pexels.com/download/video/20349634/",
   heading: "Let's Build Something Extraordinary Together",
-  description: "Whether you're planning a dream home, commercial space, or structural project, our team is ready to bring your vision to life.",
+  description: "Whether you're planning a structural project,dream home or  commercial space, our team is ready to bring your vision to life.",
   ctaText: "Start Your Project",
 };
 
@@ -10,9 +10,9 @@ export const contactDetails = [
     id: "address",
     icon: "FaMapMarkerAlt",
     title: "Office Address",
-    line1: "Lakshmi Complex",
-    line2: "Nurani Gramam Road",
-    line3: "Palakkad - 678004"
+    line1: "Sairam complex,",
+    line2: " Malampuzha 100ft road, Puthur",
+    line3: "Palakkad"
   },
   {
     id: "phone",

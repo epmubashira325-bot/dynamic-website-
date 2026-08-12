@@ -81,7 +81,7 @@ function Home() {
         id="section-architecture"
       />
 
-      {/* Interior Design */}
+      {/* Interior Design
       <PremiumVideoSection
         {...interior}
         hideButton={true}
@@ -91,7 +91,7 @@ function Home() {
         onViewMore={() => handleViewMore(interior.sectionId || "interior-design")}
         viewMoreLink="/services"
         id="section-interior"
-      />
+      /> */}
 
       {/* Why AM Associates */}
       <WhyChooseUs />

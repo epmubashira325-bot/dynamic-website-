@@ -174,8 +174,8 @@
   letter-spacing: 0.1em;
 }
 
-/* =======================================
-   3. BRAND PHILOSOPHY
+  /* =======================================
+   2. BRAND PHILOSOPHY (+ stats)
    ======================================= */
 .about-philosophy {
   position: relative;
@@ -185,6 +185,7 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  padding: 4rem 0;
 }
 .about-philosophy__img-bg {
   position: absolute;
@@ -204,12 +205,7 @@
 .about-philosophy__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(5, 5, 5, 0.72) 0%,
-    rgba(20, 12, 4, 0.65) 50%,
-    rgba(5, 5, 5, 0.72) 100%
-  );
+  background: rgba(15, 15, 15, 0.8);
   z-index: 1;
 }
 .about-philosophy__content {
@@ -226,6 +222,41 @@
   text-shadow: 0 2px 18px rgba(0,0,0,0.5);
 }
 
+.about-philosophy__counters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+}
+.about-philosophy__counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 140px;
+}
+.about-philosophy__counter h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--color-gold);
+  margin-bottom: 0.4rem;
+  line-height: 1;
+}
+.about-philosophy__counter span {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+@media (max-width: 768px) {
+  .about-philosophy__counters {
+    gap: 2rem;
+  }
+}
 /* =======================================
    4. VISION & MISSION
    ======================================= */

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaBuilding, FaDraftingCompass, FaCouch, FaHardHat, FaTasks, FaHandshake, FaCheckCircle, FaPlay } from "react-icons/fa";
+import { FaBuilding, FaDraftingCompass, FaCouch, FaHardHat, FaHandshake, FaCheckCircle, FaPlay } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
-  aboutHero, aboutIntro, aboutPhilosophy, aboutVisionMission,
+  aboutHero, aboutStats, aboutPhilosophy,
   aboutExpertise, aboutProcess, aboutWhyChooseUs, aboutProjects,
   aboutCTA, mergeLiveCounters
 } from "../data/aboutData";
@@ -72,7 +72,7 @@ function AboutPage() {
   }, []);
 
   const { stats } = useCompanyStatistics();
-  const displayCounters = mergeLiveCounters(aboutIntro.counters, stats);
+  const displayCounters = mergeLiveCounters(aboutStats.counters, stats);
 
   return (
     <div className="about-page">
@@ -99,69 +99,41 @@ function AboutPage() {
           </motion.div>
         </div>
       </section>
-
-      {/* 2. COMPANY INTRODUCTION */}
-      <section className="about-intro">
-        <div className="luxury-container about-intro__grid">
-          <motion.div className="about-intro__image-card" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeUp}>
-            <div className="about-intro__img-wrapper">
-              <img src={project1} alt="Amarnath M - Founder & CEO" className="about-intro__img" />
-            </div>
-            <div className="about-founder__details">
-              <h3 className="about-founder__name">Amarnath M</h3>
-              <p className="about-founder__role">Founder & CEO</p>
-              <p className="about-founder__quals">M.Tech (Structural Engineering) | Chartered Engineer | Empanelled Engineer</p>
-            </div>
-          </motion.div>
-          <motion.div className="about-intro__text" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeUp}>
-            <h2 className="about-section__title">{aboutIntro.heading}</h2>
-            <p className="about-section__desc">{aboutIntro.description}</p>
-            <div className="about-intro__counters">
-              {displayCounters.map((c, i) => (
-                <div key={i} className="about-intro__counter">
-                  <h3>{c.number}{c.suffix}</h3>
-                  <span>{c.label}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 3. BRAND PHILOSOPHY */}
+     {/* 2. BRAND PHILOSOPHY */}
       <section className="about-philosophy">
-        <div className="about-philosophy__img-bg" style={{ backgroundImage: "url('/gold-particles-bg.png')" }}></div>
+       
         <div className="about-philosophy__overlay"></div>
         <motion.div className="about-philosophy__content luxury-container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeUp}>
           <h2 className="about-section__title">{aboutPhilosophy.heading}</h2>
           <p className="about-philosophy__desc">{aboutPhilosophy.description}</p>
+
+          <motion.div
+            className="about-philosophy__counters"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={staggerContainer}
+          >
+            {displayCounters.map((c, i) => (
+              <motion.div key={i} className="about-philosophy__counter" variants={fadeUp}>
+                <h3>{c.number}{c.suffix}</h3>
+                <span>{c.label}</span>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </section>
 
-      {/* 4. VISION & MISSION */}
-      <section className="about-vision-mission">
-        <div className="luxury-container">
-          <motion.div className="about-vm__grid" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={staggerContainer}>
-            <motion.div className="about-vm__card glass-card" variants={fadeUp}>
-              <h3>Vision</h3>
-              <p>{aboutVisionMission.vision}</p>
-            </motion.div>
-            <motion.div className="about-vm__card glass-card" variants={fadeUp}>
-              <h3>Mission</h3>
-              <p>{aboutVisionMission.mission}</p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* 5. OUR EXPERTISE */}
+
+      {/* 4. OUR EXPERTISE */}
       <section className="about-expertise luxury-container">
         <motion.h2 className="about-section__title text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           Our Expertise
         </motion.h2>
         <motion.div className="about-expertise__grid" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={staggerContainer}>
           {aboutExpertise.map((item, i) => {
-            const Icon = { FaBuilding, FaDraftingCompass, FaCouch, FaHardHat, FaTasks, FaHandshake }[item.icon];
+            const Icon = { FaBuilding, FaDraftingCompass, FaCouch, FaHardHat, FaHandshake }[item.icon];
             return (
               <motion.div key={i} className="about-expertise__card" variants={fadeUp}>
                 <div className="about-expertise__icon"><Icon /></div>
@@ -173,7 +145,7 @@ function AboutPage() {
         </motion.div>
       </section>
 
-      {/* 6. OUR PROCESS */}
+      {/* 5. OUR PROCESS */}
       <section className="about-process">
         <div className="luxury-container">
           <motion.h2 className="about-section__title text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
@@ -190,7 +162,7 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* 7. WHY CHOOSE AM ASSOCIATES */}
+      {/* 6. WHY CHOOSE AM ASSOCIATES */}
       <section className="about-why">
         <div className="luxury-container">
           <motion.h2 className="about-section__title text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
@@ -207,9 +179,7 @@ function AboutPage() {
         </div>
       </section>
 
-
-
-      {/* 9. FINAL CTA */}
+      {/* 7. FINAL CTA */}
       <section className="about-cta">
         <VideoBackground vimeoId={aboutCTA.vimeoId} videoUrl={aboutCTA.videoUrl} />
         <div className="about-cta__overlay"></div>

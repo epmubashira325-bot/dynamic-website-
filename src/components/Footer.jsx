@@ -29,12 +29,12 @@ function Footer() {
             <h4 className="footer__links-title">Contact Us</h4>
             <div className="footer__links footer__contact-info">
               <p>Email:contact@theamassociates.com</p>
-              <p>Phone: +91 9037917704</p>
+              <p>Phone: +91 9567406887</p>
               <p className="footer__address">
-                Lakshmi Complex<br />
-                Nurani Gramam Road
+                Sairam complex,<br />
+                Malampuzha 100ft road, Puthur,
 
-                Palakkad - 678004
+                Palakkad 
               </p>
             </div>
           </div>

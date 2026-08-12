@@ -19,11 +19,6 @@ const ConstructionSupport = () => {
 
   const features = [
     {
-      title: "Project Management",
-      description: "End-to-end management of construction processes, ensuring timelines, budgets, and quality standards are strictly met.",
-      icon: "📋"
-    },
-    {
       title: "Site Supervision",
       description: "Dedicated on-site experts monitoring daily activities, enforcing safety protocols, and ensuring design compliance.",
       icon: "👷"
@@ -74,8 +69,8 @@ const ConstructionSupport = () => {
       />
 
       <ServiceOverview
-        title="Excellence in Execution"
-        description1="Amarnath Associates is a full-service provider of professional construction management services serving a wide range of clients with limited human resources and increasingly complex capital projects – client owners across the country face challenges every day. We serve as a client’s professional construction consultant and oversee the contractor’s ability to complete the project based on its diversity and innovative project delivery system. "
+       
+        description1="Amarnath Associates provides professional construction support and engineering consultancy services to assist clients throughout their construction projects. Our team offers expert technical guidance, engineering support, and practical solutions to help ensure projects are planned and executed effectively."
         image={heroImg}
       />
 
@@ -89,10 +84,7 @@ const ConstructionSupport = () => {
         steps={processSteps}
       />
 
-      <FAQSection
-        title="Frequently Asked Questions"
-        faqs={faqs}
-      />
+      
 
       <CTASection
         title="Ready to Break Ground?"

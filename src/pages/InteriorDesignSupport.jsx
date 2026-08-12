@@ -74,8 +74,9 @@ const InteriorDesignSupport = () => {
       />
 
       <ServiceOverview
-        title="Artistry in Every Detail"
-        description1="We help you create interiors that are a true reflection of you, the residents who call our projects home. We focus on designing spaces that represent your personal style and functionality needs, paired with our unique and timeless design concepts. Our goal is to guide you through this process in an easy and fun way, so our team is skilled in handling all aspects of a design job, including project management, budget review, and collaborating with architects and builders. Together, we can create the home of your dreams.."
+        
+        description1="We provide professional interior design solutions tailored to your lifestyle, preferences, and project requirements. Through our strong partnerships with experienced interior design firms, we connect you with skilled professionals who deliver functional, thoughtfully designed spaces. Our trusted network ensures quality design, and a seamless experience from concept to completion."
+
         image={heroImg}
       />
 
@@ -89,10 +90,7 @@ const InteriorDesignSupport = () => {
         steps={processSteps}
       />
 
-      <FAQSection
-        title="Frequently Asked Questions"
-        faqs={faqs}
-      />
+   
 
       <CTASection
         title="Ready to Elevate Your Interior?"

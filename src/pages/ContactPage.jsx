@@ -185,8 +185,8 @@ const ContactPage = () => {
       title: 'Visit Our Office',
       content: (
         <>
-          <p>Lakshmi Complex, Nurani Gramam Road</p>
-          <p>Palakkad - 678004</p>
+          <p>Sairam complex, Malampuzha 100ft road, Puthur,</p>
+          <p>Palakkad</p>
         </>
       ),
     },

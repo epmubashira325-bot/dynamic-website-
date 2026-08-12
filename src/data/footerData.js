@@ -9,7 +9,7 @@ const footerData = {
   email: "contact@theamassociates.com",
 
   address: {
-    text: "Lakshmi Complex, Nurani Gramam Road, Palakkad - 678004",
+    text: "Sairam complex, Malampuzha 100ft road, Puthur, Palakkad ",
     map: "https://maps.google.com/?q=Lakshmi+Complex+Nurani+Gramam+Road+Palakkad+678004",
   },
 

@@ -3,26 +3,22 @@
 export const aboutHero = {
   videoUrl: "/abstract-pattern.mp4",
   label: "ABOUT AM ASSOCIATES",
-  heading: "Engineering Excellence Through Design & Innovation",
-  description: "Creating timeless structures and inspiring spaces with precision, creativity, and uncompromising quality.",
+  heading: "Engineering Excellence ",
+  description: "Providing structural  engineering, construction support , and design support with practical solutions tailored to your project needs.",
   ctaText: "Explore Our Journey",
 };
 
-export const aboutIntro = {
-  vimeoId: "167105431",
-  heading: "Who We Are",
-  description: "AM Associates is a multidisciplinary architecture and structural engineering firm delivering innovative design, reliable engineering, and exceptional construction solutions for residential and commercial projects.",
+export const aboutStats = {
   counters: [
     { number: 5, suffix: "+", label: "Years Experience" },
     { number: 30, suffix: "+", label: "Projects Completed" },
     { number: 100, suffix: "%", label: "Quality Assurance" },
-
   ]
 };
 
 // Maps live values from /api/statistics/ onto a counters array by matching
 // each item's label (case-insensitive substring match), so it works for
-// both aboutIntro.counters ("Years Experience", "Projects Completed") and
+// both aboutStats.counters ("Years Experience", "Projects Completed") and
 // videoData.js's aboutCounters ("Years", "Projects", "Clients").
 // Falls back to the static "number" if liveStats is null/loading, or if a
 // label has no matching backend field (e.g. Quality Assurance, Team).
@@ -49,17 +45,11 @@ export const aboutPhilosophy = {
   description: "We believe every project should combine engineering precision, thoughtful design, and lasting value. Our approach transforms ideas into functional, beautiful, and enduring spaces."
 };
 
-export const aboutVisionMission = {
-  vision: "To become a trusted leader in architecture and structural engineering by delivering innovative, sustainable, and world-class built environments.",
-  mission: "To create exceptional spaces through collaboration, technical excellence, modern design, and uncompromising quality."
-};
-
 export const aboutExpertise = [
   { icon: "FaBuilding", title: "Structural Engineering", desc: "Delivering safe and efficient structural solutions." },
-  { icon: "FaDraftingCompass", title: "Architecture", desc: "Innovative designs pushing architectural boundaries." },
-  { icon: "FaCouch", title: "Interior Design", desc: "Creating elegant and timeless living spaces." },
-  { icon: "FaHardHat", title: "Construction", desc: "Building spaces with precision and premium quality." },
-  { icon: "FaTasks", title: "Project Management", desc: "Ensuring projects are completed on schedule seamlessly." },
+  { icon: "FaDraftingCompass", title: "Architectural Team  Support", desc: "Innovative designs pushing architectural boundaries." },
+  { icon: "FaCouch", title: "Interior Team  Support", desc: "Creating elegant and timeless living spaces." },
+  { icon: "FaHardHat", title: "Construction Team  Support", desc: "Building spaces with precision and premium quality." },
   { icon: "FaHandshake", title: "Renovation & Consulting", desc: "Expert guidance and structural revitalization." }
 ];
 
@@ -73,12 +63,12 @@ export const aboutProcess = [
 ];
 
 export const aboutWhyChooseUs = [
-  "Experienced Engineering Team",
-  "Innovative Design Solutions",
-  "Premium Quality Standards",
-  "Transparent Project Management",
-  "On-Time Delivery",
-  "Customer-Focused Approach"
+  "Engineering -Driven Approch",
+  "Safe & Durable Structures",
+  "Quality Design Approch",
+  "Safety Without Compromise",
+  "Transparent Process", 
+  "Long Term Value"
 ];
 
 export const aboutProjects = [
