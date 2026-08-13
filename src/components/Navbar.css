@@ -28,26 +28,41 @@
 /* Logo */
 .navbar__logo {
   display: flex;
-  align-items: baseline;
-  gap: 0.35rem;
+  align-items: center;
+  gap: 0.6rem;
   text-decoration: none;
   z-index: 1001;
 }
 
+.navbar__logo-img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.navbar__logo-text {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .navbar__logo-main {
   font-family: var(--font-serif);
-  font-size: 2.1rem;
+  font-size: 2.4rem;
   font-weight: 600;
   color: var(--color-white);
   letter-spacing: 0.05em;
+  line-height: 1;
 }
 
 .navbar__logo-accent {
   font-family: var(--font-serif);
-  font-size: 2.1rem;
+  font-size: 2.4rem;
   font-weight: 300;
   color: var(--color-gold);
   letter-spacing: 0.05em;
+  line-height: 1;
 }
 
 /* Minimalist Hamburger Toggle */
@@ -95,9 +110,6 @@
   width: 34px;
 }
 
-/* ========================================
-   FULLSCREEN MENU
-   ======================================== */
 /* ========================================
    FULLSCREEN MENU
    ======================================== */
@@ -180,9 +192,13 @@
    ======================================== */
 @media (max-width: 768px) {
 
+  .navbar__logo-img {
+    height: 42px;
+  }
+
   .navbar__logo-main,
   .navbar__logo-accent {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
   }
 
   /* Slightly larger on mobile too */

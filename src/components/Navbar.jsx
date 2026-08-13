@@ -38,8 +38,15 @@ function Navbar() {
 
           {/* Logo */}
           <Link to="/" className="navbar__logo" onClick={() => setMobileOpen(false)}>
-            <span className="navbar__logo-main">AM</span>
-            <span className="navbar__logo-accent">Associates</span>
+            <img
+              src="/logo1.png"
+              alt="AM Associates Logo"
+              className="navbar__logo-img"
+            />
+            <span className="navbar__logo-text">
+              <span className="navbar__logo-main">AM</span>
+              <span className="navbar__logo-accent">Associates</span>
+            </span>
           </Link>
 
           {/* Mobile/Fullscreen Toggle */}
