@@ -10,7 +10,7 @@ import {
   CTASection 
 } from '../components/ServiceReusableComponents';
 
-import heroImg from '../assets/images/services/structural.jpg'; // We can use the same fallback images or just placeholder if not available.
+import heroImg from '../assets/images/services/structural1.jpg'; // We can use the same fallback images or just placeholder if not available.
 // Since we used fallback images in ServicesPage.jsx, I will use them.
 
 const StructuralEngineering = () => {
